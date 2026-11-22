@@ -22,8 +22,7 @@ export const products: Product[] = (raw as any[]).map((p) => ({
   title: p.title,
   description_html: p.description_html ?? "",
   category_id: Number(p.category_id),
-  category: p.category ?? "",
-  price_ex_tax: toNumber(p.price_ex_tax),
+  category: p.category_display ?? p.category ?? "","  price_ex_tax: toNumber(p.price_ex_tax),
   price_incl_tax: toNumber(p.price_incl_tax),
   is_new: Boolean(p.is_new),
   images: typeof p.images === "string"
@@ -40,12 +39,12 @@ export function getProductsByCategory(categoryId: string | number) {
 }
 
 export const categories = [
-  { id: "933900", name: "TAGBACKPACK" },
-  { id: "1266661", name: "TAGSACO" },
-  { id: "936209", name: "TAGPOLE" },
-  { id: "934964", name: "TAGSTOV" },
-  { id: "1254977", name: "TAGSLEEP" },
-  { id: "1474197", name: "Tarp&Shelter" },
-  { id: "936210", name: "TAGACC" },
-  { id: "938945", name: "TAGMATEx" },
+  { id: "933900", name: "バックパック" },
+  { id: "1266661", name: "サコッシュ" },
+  { id: "936209", name: "ハイキングポール" },
+  { id: "934964", name: "ストーブ＆カトラリー" },
+  { id: "1254977", name: "スリーピンググッズ" },
+  { id: "1474197", name: "タープ&シェルター" },
+  { id: "936210", name: "アクセサリー" },
+  { id: "938945", name: "マテリアル" },
 ];

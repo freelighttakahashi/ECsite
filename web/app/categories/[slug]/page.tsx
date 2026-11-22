@@ -2,9 +2,14 @@ import { getProductsByCategory, categories } from "@/lib/products";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
-  const category = categories.find((c) => c.id === params.slug);
-  const products = getProductsByCategory(params.slug);
+export function generateStaticParams() {
+  return categories.map((c) => ({ slug: c.id }));
+}
+
+export default async function CategoryPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const category = categories.find((c) => c.id === slug);
+  const products = getProductsByCategory(slug);
 
   return (
     <div>

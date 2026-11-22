@@ -22,6 +22,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </header>
         <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
         <footer className="border-t mt-12 py-6 text-center text-xs text-gray-500">
+          <div className="flex justify-center gap-4 mb-2">
+            <Link href="/legal" className="hover:underline">特定商取引法に基づく表記</Link>
+            <Link href="/privacy" className="hover:underline">プライバシーポリシー</Link>
+            <Link href="/terms" className="hover:underline">利用規約</Link>
+          </div>
           copyright (c)2011 freelight All rights reserved.
         </footer>
       </body>

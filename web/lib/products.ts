@@ -22,7 +22,8 @@ export const products: Product[] = (raw as any[]).map((p) => ({
   title: p.title,
   description_html: p.description_html ?? "",
   category_id: Number(p.category_id),
-  category: p.category_display ?? p.category ?? "","  price_ex_tax: toNumber(p.price_ex_tax),
+  category: p.category_display ?? p.category ?? "",
+  price_ex_tax: toNumber(p.price_ex_tax),
   price_incl_tax: toNumber(p.price_incl_tax),
   is_new: Boolean(p.is_new),
   images: typeof p.images === "string"

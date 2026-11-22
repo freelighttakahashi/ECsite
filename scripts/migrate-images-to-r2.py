@@ -81,8 +81,26 @@ def build_mapping(urls):
 
     for key, originals in by_key.items():
         # download once using first original
-        data = download(originals[0])
-        s3.put_object(Bucket=BUCKET, Key=key, Body=data, ContentType=guess_ct(key))
+        # skip if already uploaded
+        try:
+            s3.head_object(Bucket=BUCKET, Key=key)
+            r2_url = f"{PUBLIC_URL}/{key}"
+            for u in originals:
+                mapping[u] = r2_url
+                if u.startswith("//"):
+                    mapping["https:" + u] = r2_url
+                else:
+                    mapping["//" + u.split("://", 1)[-1]] = r2_url
+            print(f"exists: {key}")
+            continue
+        except Exception:
+            pass
+        try:
+            data = download(originals[0])
+            s3.put_object(Bucket=BUCKET, Key=key, Body=data, ContentType=guess_ct(key))
+        except Exception as e:
+            print(f"SKIPPED (download/upload failed): {key} -> {e}")
+            continue
         r2_url = f"{PUBLIC_URL}/{key}"
         for u in originals:
             mapping[u] = r2_url

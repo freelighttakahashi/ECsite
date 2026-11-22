@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-white text-gray-900;
+}
+
+.price-two-line .ex {
+  @apply text-sm text-gray-500;
+}
+.price-two-line .inc {
+  @apply text-lg font-bold;
+}

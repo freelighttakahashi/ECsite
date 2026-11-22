@@ -1,0 +1,17 @@
+# 依存関係 
+web/node_modules/ 
+ 
+# ビルド成果物 
+web/.next/ 
+web/out/ 
+ 
+# 環境変数（機密情報） 
+web/.env.local 
+ 
+# 画像ファイル 
+data/images/ 
+ 
+# OS・エディタ 
+.DS_Store 
+Thumbs.db 
+*.log 
